@@ -1,3 +1,130 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "Industrial steel texture or factory lighting background",
+      "imageUrl": "https://images.unsplash.com/photo-1595234200096-f1c7ccdf26a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzdGVlbCUyMHRleHR1cmV8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel texture"
+    },
+    {
+      "id": "about-ntm",
+      "description": "Image for the About NTM Metals section",
+      "imageUrl": "https://images.unsplash.com/photo-1515630771457-09367d0ae038?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWV0YWwlMjBmYWJyaWNhdGlvbnxlbnwwfHx8fDE3NjU3MDYzMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal fabrication"
+    },
+    {
+      "id": "hr-sheet",
+      "description": "Hot Rolled Steel Sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1661169440284-575c47c78ab7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdGVlbCUyMHNoZWV0fGVufDB8fHx8MTc2NTcwNjMwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel sheet"
+    },
+    {
+      "id": "cr-sheet",
+      "description": "Cold Rolled Steel Sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1720036237373-ea4843733d1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdGVlbCUyMHJvbGx8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel roll"
+    },
+    {
+      "id": "checker-plate-hr",
+      "description": "Checker Plate Hot Rolled",
+      "imageUrl": "https://images.unsplash.com/photo-1740678571673-2a7c603379d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjaGVja2VyJTIwcGxhdGV8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "checker plate"
+    },
+    {
+      "id": "gi-sheet",
+      "description": "Galvanized Iron Sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1615219023549-5c9abdb7df9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxnYWx2YW5pemVkJTIwc3RlZWx8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "galvanized steel"
+    },
+    {
+      "id": "ss-sheet",
+      "description": "Stainless Steel Sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1604414499020-f9ac575bc5ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzdGFpbmxlc3MlMjBzdGVlbHxlbnwwfHx8fDE3NjU3MDYzMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "stainless steel"
+    },
+    {
+      "id": "japan-sheet",
+      "description": "Japan Sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1625466070026-241dbc7348a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtZXRhbCUyMHNoZWV0fGVufDB8fHx8MTc2NTYzMjI0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal sheet"
+    },
+    {
+      "id": "service-laser-cutting",
+      "description": "Image for Laser Cutting service",
+      "imageUrl": "https://images.unsplash.com/photo-1738162837451-2041c1418f54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsYXNlciUyMGN1dHRpbmd8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laser cutting"
+    },
+    {
+      "id": "service-plasma-cutting",
+      "description": "Image for Plasma Cutting service",
+      "imageUrl": "https://images.unsplash.com/photo-1764115424737-25aca6f47835?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwbGFzbWElMjBjdXR0aW5nfGVufDB8fHx8MTc2NTcwNjMwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plasma cutting"
+    },
+    {
+      "id": "service-cnc-bending",
+      "description": "Image for CNC Bending service",
+      "imageUrl": "https://images.unsplash.com/photo-1738162837340-da3e7a323a09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZXRhbCUyMGJlbmRpbmd8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal bending"
+    },
+    {
+      "id": "service-welding",
+      "description": "Image for Welding service",
+      "imageUrl": "https://images.unsplash.com/photo-1526634140919-468dc3ae3870?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3ZWxkaW5nfGVufDB8fHx8MTc2NTcwNjMwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "welding"
+    },
+    {
+      "id": "service-custom-fabrication",
+      "description": "Image for Custom Fabrication service",
+      "imageUrl": "https://images.unsplash.com/photo-1499815022134-5a333f5a299c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtZXRhbCUyMGZhYnJpY2F0aW9ufGVufDB8fHx8MTc2NTcwNjMwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal fabrication"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Gallery image of steel products",
+      "imageUrl": "https://images.unsplash.com/photo-1655070334710-f5ce123b4bce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdGVlbCUyMHByb2R1Y3RzfGVufDB8fHx8MTc2NTcwNjMwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel products"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Gallery image of cutting machines",
+      "imageUrl": "https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxpbmR1c3RyaWFsJTIwbWFjaGluZXJ5fGVufDB8fHx8MTc2NTY5NDg1NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "industrial machinery"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Gallery image of finished components",
+      "imageUrl": "https://images.unsplash.com/photo-1759159092038-d414f661dbf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtZXRhbCUyMHBhcnRzfGVufDB8fHx8MTc2NTYyNDEyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal parts"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Gallery image of on-site deliveries",
+      "imageUrl": "https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkZWxpdmVyeSUyMHRydWNrfGVufDB8fHx8MTc2NTY0NDk4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "delivery truck"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Gallery image of fabricated works",
+      "imageUrl": "https://images.unsplash.com/photo-1743364723244-3780ffd45cc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWxkZWQlMjBzdHJ1Y3R1cmV8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "welded structure"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Gallery image of a workshop",
+      "imageUrl": "https://images.unsplash.com/photo-1683470157201-3838760a7e51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtZXRhbCUyMHdvcmtzaG9wfGVufDB8fHx8MTc2NTcwNjMwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal workshop"
+    },
+    {
+      "id": "gallery-7",
+      "description": "Gallery image of stacked steel plates",
+      "imageUrl": "https://images.unsplash.com/photo-1620878936052-4d77e15be360?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdGVlbCUyMHBsYXRlc3xlbnwwfHx8fDE3NjU3MDYzMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel plates"
+    },
+    {
+      "id": "gallery-8",
+      "description": "Gallery image of a precision cut metal part",
+      "imageUrl": "https://images.unsplash.com/photo-1646724684583-764bb3f47c1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cHJlY2lzaW9uJTIwZW5naW5lZXJpbmd8ZW58MHx8fHwxNzY1NzA2MzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "precision engineering"
+    }
+  ]
 }
