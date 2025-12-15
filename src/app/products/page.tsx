@@ -1,26 +1,25 @@
-import { products } from '@/lib/data';
-import { ProductCard } from '@/components/product-card';
-import { PageHeader } from '@/components/page-header';
-import { FadeIn } from '@/components/fade-in';
+'use client';
 
-export const metadata = {
-  title: 'Our Products | NTM Metals',
-  description: 'Explore our wide range of high-quality steel products, including HR Sheets, CR Sheets, Checker Plates, GI Sheets, SS Sheets, and Japan Sheets.',
-};
+import { products } from '@/lib/data';
+import { PageHeader } from '@/components/page-header';
+import { ProductCard } from '@/components/product-card';
+import { FadeIn } from '@/components/fade-in';
 
 export default function ProductsPage() {
   return (
     <>
-      <PageHeader 
-        title="Our Steel Products"
-        subtitle="Explore our comprehensive inventory of premium quality steel sheets."
+      <PageHeader
+        title="Our Products"
+        description="Explore our wide range of high-quality steel products, available in various sizes and grades to meet your specific needs."
       />
-      <section id="products-grid">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <section className="py-12 sm:py-16">
+        <div className="container">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product, index) => (
-              <FadeIn key={product.id} delay={index * 100}>
-                <ProductCard product={product} />
+              <FadeIn key={product.id} delay={index * 0.1}>
+                <div id={product.slug}>
+                  <ProductCard product={product} />
+                </div>
               </FadeIn>
             ))}
           </div>

@@ -2,13 +2,29 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, ShoppingCart, X } from 'lucide-react';
+import { Menu, ShoppingCart, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { Logo } from '@/components/logo';
 import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useEnquiry } from '@/contexts/enquiry-context';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
+import type { NavItem } from '@/lib/types';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +38,82 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const NavLink = ({ link }: { link: NavItem }) => {
+    if (link.sublinks) {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className={cn(
+                'flex items-center gap-1 font-medium transition-colors hover:text-accent',
+                isScrolled ? 'text-foreground hover:bg-transparent' : 'text-primary-foreground/90 hover:bg-white/10',
+                'px-3 py-2'
+              )}
+            >
+              {link.label}
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="bg-background/80 backdrop-blur-sm">
+            {link.sublinks.map((sublink) => (
+              <DropdownMenuItem key={sublink.href} asChild>
+                <Link href={sublink.href}>{sublink.label}</Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+
+    return (
+      <Link
+        href={link.href}
+        className={cn(
+          'font-medium transition-colors hover:text-accent px-3 py-2 rounded-md',
+          isScrolled ? 'text-foreground' : 'text-primary-foreground/90'
+        )}
+      >
+        {link.label}
+      </Link>
+    );
+  };
+
+  const MobileNavLink = ({ link }: { link: NavItem }) => {
+    const closeMenu = () => setIsMobileMenuOpen(false);
+    if (link.sublinks) {
+      return (
+        <Collapsible className="w-full">
+          <CollapsibleTrigger className="flex w-full items-center justify-between rounded-md px-3 py-2 text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground">
+            {link.label}
+            <ChevronDown className="h-5 w-5" />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pl-4">
+            {link.sublinks.map((sublink) => (
+              <Link
+                key={sublink.href}
+                href={sublink.href}
+                className="block rounded-md px-3 py-2 text-base font-medium text-foreground/80 hover:bg-accent hover:text-accent-foreground"
+                onClick={closeMenu}
+              >
+                {sublink.label}
+              </Link>
+            ))}
+          </CollapsibleContent>
+        </Collapsible>
+      );
+    }
+    return (
+      <Link
+        href={link.href}
+        className="block rounded-md px-3 py-2 text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+        onClick={closeMenu}
+      >
+        {link.label}
+      </Link>
+    );
+  };
 
   return (
     <header
@@ -37,18 +129,9 @@ export function Header() {
           <Logo className={isScrolled ? 'text-primary' : 'text-primary-foreground dark:text-primary'} />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                'font-medium transition-colors hover:text-accent',
-                isScrolled ? 'text-foreground' : 'text-primary-foreground/90'
-              )}
-            >
-              {link.label}
-            </Link>
+            <NavLink key={link.href} link={link} />
           ))}
         </nav>
 
@@ -100,16 +183,9 @@ export function Header() {
                     <X className="h-6 w-6" />
                   </Button>
                 </div>
-                <nav className="flex flex-col gap-4 p-4">
+                <nav className="flex flex-col gap-1 p-4">
                   {NAV_LINKS.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="rounded-md px-3 py-2 text-lg font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
+                    <MobileNavLink key={link.href} link={link} />
                   ))}
                 </nav>
                 <div className="mt-auto p-4">

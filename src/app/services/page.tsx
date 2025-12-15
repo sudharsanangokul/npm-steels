@@ -1,58 +1,65 @@
-import Image from 'next/image';
-import { services } from '@/lib/data';
-import { Card, CardContent } from '@/components/ui/card';
-import { PageHeader } from '@/components/page-header';
-import { FadeIn } from '@/components/fade-in';
-import { Badge } from '@/components/ui/badge';
+'use client';
 
-export const metadata = {
-  title: 'Our Services | NTM Metals',
-  description: 'Discover our expert steel fabrication services, including laser cutting, plasma cutting, CNC bending, welding, and custom sheet metal fabrication.',
-};
+import { services } from '@/lib/data';
+import { PageHeader } from '@/components/page-header';
+import { SectionHeader } from '@/components/section-header';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { FadeIn } from '@/components/fade-in';
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHeader 
-        title="Our Fabrication Services"
-        subtitle="State-of-the-art technology for unparalleled precision and quality."
+      <PageHeader
+        title="Our Services"
+        description="From precision cutting to custom fabrication, we offer a comprehensive suite of services to transform raw materials into finished products."
       />
-      <section id="services-list">
-        <div className="container mx-auto">
+      <section className="py-12 sm:py-16">
+        <div className="container">
           <div className="space-y-12">
             {services.map((service, index) => (
-              <FadeIn key={service.id} delay={index * 150}>
-                <Card className="overflow-hidden shadow-lg transition-shadow hover:shadow-xl">
-                  <div className="grid grid-cols-1 md:grid-cols-2">
-                    <div className="relative h-64 md:h-auto">
+              <FadeIn key={service.id} delay={index * 0.1}>
+                <div id={service.id} className="overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm">
+                  <div
+                    className={cn(
+                      'grid grid-cols-1 items-center gap-8',
+                      index % 2 === 0 ? 'md:grid-cols-2' : 'md:grid-cols-2 md:grid-flow-row-dense'
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        'order-last',
+                        index % 2 === 0 ? '' : 'md:order-first'
+                      )}
+                    >
                       <Image
                         src={service.image}
                         alt={service.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        data-ai-hint="metal fabrication"
+                        width={600}
+                        height={400}
+                        className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="p-6 md:p-8">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-md bg-accent/10 p-3 text-accent">
-                          <service.icon className="h-6 w-6" />
-                        </div>
-                        <h3 className="font-headline text-2xl font-bold text-primary">{service.title}</h3>
-                      </div>
-                      <p className="mt-4 text-muted-foreground">{service.description}</p>
-                      <div className="mt-6">
-                        <h4 className="font-semibold text-foreground">Industries Served:</h4>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {service.industries.map((industry) => (
-                            <Badge key={industry} variant="secondary">{industry}</Badge>
-                          ))}
-                        </div>
+                    <div className="p-6 sm:p-8">
+                      <SectionHeader
+                        title={service.title}
+                        Icon={service.icon}
+                        className="mb-4"
+                      />
+                      <p className="text-muted-foreground mb-6">
+                        {service.description}
+                      </p>
+                      <h4 className="font-semibold text-foreground mb-2">Industries Served:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {service.industries.map(industry => (
+                          <span key={industry} className="rounded-full bg-accent/50 px-3 py-1 text-sm text-accent-foreground">
+                            {industry}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
-                </Card>
+                </div>
               </FadeIn>
             ))}
           </div>
