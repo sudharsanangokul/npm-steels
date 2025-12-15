@@ -1,11 +1,26 @@
 'use client';
 
+import { useEffect } from 'react';
 import { products } from '@/lib/data';
 import { PageHeader } from '@/components/page-header';
 import { ProductCard } from '@/components/product-card';
 import { FadeIn } from '@/components/fade-in';
 
 export default function ProductsPage() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
+
   return (
     <>
       <PageHeader

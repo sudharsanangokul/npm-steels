@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { services } from '@/lib/data';
 import { PageHeader } from '@/components/page-header';
 import { SectionHeader } from '@/components/section-header';
@@ -8,6 +9,20 @@ import { cn } from '@/lib/utils';
 import { FadeIn } from '@/components/fade-in';
 
 export default function ServicesPage() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
+
   return (
     <>
       <PageHeader
