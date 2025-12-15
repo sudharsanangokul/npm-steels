@@ -1,8 +1,13 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, ShoppingCart, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import {
+  Menu, 
+  ShoppingCart, 
+  X, 
+  ChevronDown, 
+  ChevronRight 
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -14,17 +19,41 @@ import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useEnquiry } from '@/contexts/enquiry-context';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import type { NavItem } from '@/lib/types';
+
+const ListItem = (({ className, title, children, ...props }) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,41 +71,44 @@ export function Header() {
   const NavLink = ({ link }: { link: NavItem }) => {
     if (link.sublinks) {
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className={cn(
-                'flex items-center gap-1 font-medium transition-colors hover:text-accent',
-                isScrolled ? 'text-foreground hover:bg-transparent' : 'text-primary-foreground/90 hover:bg-white/10',
-                'px-3 py-2'
-              )}
-            >
-              {link.label}
-              <ChevronDown className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-background/80 backdrop-blur-sm">
-            {link.sublinks.map((sublink) => (
-              <DropdownMenuItem key={sublink.href} asChild>
-                <Link href={sublink.href}>{sublink.label}</Link>
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger 
+            className={cn(
+              'flex items-center gap-1 font-medium transition-colors hover:text-accent',
+              isScrolled ? 'text-foreground hover:bg-transparent' : 'text-primary-foreground/90 hover:bg-white/10',
+              'px-3 py-2 bg-transparent focus:bg-transparent'
+            )}
+          >
+            {link.label}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              {link.sublinks.map((sublink) => (
+                <ListItem
+                  key={sublink.href}
+                  href={sublink.href}
+                  title={sublink.label}
+                >
+                  {sublink.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
       );
     }
 
     return (
-      <Link
-        href={link.href}
-        className={cn(
-          'font-medium transition-colors hover:text-accent px-3 py-2 rounded-md',
-          isScrolled ? 'text-foreground' : 'text-primary-foreground/90'
-        )}
-      >
-        {link.label}
-      </Link>
+      <NavigationMenuItem>
+        <Link href={link.href} legacyBehavior passHref>
+          <NavigationMenuLink className={cn(
+            'font-medium transition-colors hover:text-accent px-3 py-2 rounded-md',
+            isScrolled ? 'text-foreground' : 'text-primary-foreground/90'
+          )}>
+            {link.label}
+          </NavigationMenuLink>
+        </Link>
+      </NavigationMenuItem>
     );
   };
 
@@ -129,11 +161,13 @@ export function Header() {
           <Logo className={isScrolled ? 'text-primary' : 'text-primary-foreground dark:text-primary'} />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <NavLink key={link.href} link={link} />
-          ))}
-        </nav>
+        <NavigationMenu className="hidden lg:flex">
+          <NavigationMenuList>
+            {NAV_LINKS.map((link, index) => (
+              <NavLink key={index} link={link} />
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <div className="flex items-center gap-2">
           <Button

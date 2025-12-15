@@ -1,9 +1,32 @@
+import { products, services } from './data';
 import type { NavItem } from './types';
+
+const productSublinks = products.map(p => ({
+  label: p.title,
+  href: `/products#${p.slug}`,
+  description: p.description,
+  image: p.image,
+}));
+
+const serviceSublinks = services.map(s => ({
+  label: s.title,
+  href: `/services#${s.id}`,
+  description: s.description,
+  image: s.image,
+}));
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Products', href: '/products' },
-  { label: 'Services', href: '/services' },
+  { 
+    label: 'Products', 
+    href: '/products', 
+    sublinks: productSublinks
+  },
+  { 
+    label: 'Services', 
+    href: '/services',
+    sublinks: serviceSublinks
+  },
   { label: 'Gallery', href: '/gallery' },
   { label: 'AI Assistant', href: '/ai-quote-assistant' },
   { label: 'Contact', href: '/contact' },
