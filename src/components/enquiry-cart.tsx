@@ -65,7 +65,7 @@ export function EnquiryCart() {
                         <Input
                             type="number"
                             value={quantity}
-                            onChange={(e) => updateQuantity(product.id, parseInt(e.target.value) || 1)}
+                            onChange={(e) => updateQuantity(product.id, parseInt(e.target.value) || 0)}
                             className="h-8 w-14 text-center"
                         />
                         <Button
