@@ -1,3 +1,130 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "Wide shot of steel fabrication facility",
+      "imageUrl": "https://images.unsplash.com/photo-1511454493857-0a29f2c023c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdGVlbCUyMGZhY3Rvcnl8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel factory"
+    },
+    {
+      "id": "hr-steel-sheet",
+      "description": "Stack of hot rolled steel sheets",
+      "imageUrl": "https://images.unsplash.com/photo-1763926025420-adf538deaee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdGVlbCUyMHNoZWV0c3xlbnwwfHx8fDE3NjczMzI5Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel sheets"
+    },
+    {
+      "id": "cr-steel-sheet",
+      "description": "Close-up of a smooth cold rolled steel sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1536566482680-fca31930a0bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWV0YWwlMjB0ZXh0dXJlfGVufDB8fHx8MTc2NzMyODY5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal texture"
+    },
+    {
+      "id": "gi-steel-sheet",
+      "description": "Galvanized iron sheet with spangle pattern",
+      "imageUrl": "https://images.unsplash.com/photo-1644116713079-db356beeedfb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnYWx2YW5pemVkJTIwbWV0YWx8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "galvanized metal"
+    },
+    {
+      "id": "ss-steel-sheet-304",
+      "description": "Brushed finish stainless steel 304 sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1656274404439-b8b463c73194?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxicnVzaGVkJTIwbWV0YWx8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "brushed metal"
+    },
+    {
+      "id": "ss-steel-sheet-316",
+      "description": "Polished stainless steel 316 sheet, reflecting light",
+      "imageUrl": "https://images.unsplash.com/photo-1605701249987-f0bb9b505d06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb2xpc2hlZCUyMHN0ZWVsfGVufDB8fHx8MTc2NzMzMjk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "polished steel"
+    },
+    {
+      "id": "japan-steel-sheet",
+      "description": "Thin, high-tensile steel sheet from Japan",
+      "imageUrl": "https://images.unsplash.com/photo-1595234200096-f1c7ccdf26a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtZXRhbCUyMHNoZWV0fGVufDB8fHx8MTc2NzMzMjk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal sheet"
+    },
+    {
+      "id": "service-laser",
+      "description": "Laser cutting machine in action",
+      "imageUrl": "https://images.unsplash.com/photo-1633461235063-331acc77d7d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsYXNlciUyMGN1dHRpbmd8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laser cutting"
+    },
+    {
+      "id": "service-plasma",
+      "description": "Plasma cutter slicing through thick steel plate",
+      "imageUrl": "https://images.unsplash.com/photo-1630129116059-7b0ff953202e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwbGFzbWElMjBjdXR0aW5nfGVufDB8fHx8MTc2NzMzMjk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plasma cutting"
+    },
+    {
+      "id": "service-bending",
+      "description": "CNC press brake bending a metal sheet",
+      "imageUrl": "https://images.unsplash.com/photo-1748365335045-9f541cdc60f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtZXRhbCUyMGJlbmRpbmd8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal bending"
+    },
+    {
+      "id": "service-welding",
+      "description": "Welder working on a steel frame",
+      "imageUrl": "https://images.unsplash.com/photo-1466779561253-0a08336ba2ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2VsZGluZ3xlbnwwfHx8fDE3NjczMzI5Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "welding"
+    },
+    {
+      "id": "service-fabrication",
+      "description": "Custom fabricated metal part on a workbench",
+      "imageUrl": "https://images.unsplash.com/photo-1496244665455-9eed4d2c97dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtZXRhbCUyMGZhYnJpY2F0aW9ufGVufDB8fHx8MTc2NzMzMjk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal fabrication"
+    },
+    {
+      "id": "gallery-1",
+      "description": "A stack of freshly cut steel components",
+      "imageUrl": "https://images.unsplash.com/photo-1609192492693-15c6b06abfb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZXRhbCUyMHBhcnRzfGVufDB8fHx8MTc2NzMzMjk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal parts"
+    },
+    {
+      "id": "gallery-2",
+      "description": "A close up of a laser cutting head",
+      "imageUrl": "https://images.unsplash.com/photo-1735494033576-9c882e80504c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsYXNlciUyMG1hY2hpbmV8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laser machine"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Finished custom metal enclosure",
+      "imageUrl": "https://images.unsplash.com/photo-1704118548839-e396945adeea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWV0YWwlMjBib3h8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal box"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Delivery truck with steel sheets on-site",
+      "imageUrl": "https://images.unsplash.com/photo-1620455800201-7f00aeef12ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkZWxpdmVyeSUyMHRydWNrfGVufDB8fHx8MTc2NzMzMjk3OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "delivery truck"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Wide angle view of the workshop floor",
+      "imageUrl": "https://images.unsplash.com/photo-1699221956348-0b214a4b5f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmYWN0b3J5JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "factory interior"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Sparks from a plasma cutter",
+      "imageUrl": "https://images.unsplash.com/photo-1612676756023-0219168b193f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzcGFya3N8ZW58MHx8fHwxNzY3MzMyOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sparks"
+    },
+    {
+      "id": "gallery-7",
+      "description": "A welder joining two pieces of metal",
+      "imageUrl": "https://images.unsplash.com/photo-1698664683348-f9f35b809821?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3ZWxkaW5nfGVufDB8fHx8MTc2NzMzMjk3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "welding"
+    },
+    {
+      "id": "gallery-8",
+      "description": "A worker operating a CNC bending machine",
+      "imageUrl": "https://images.unsplash.com/photo-1758271613743-748b409c196b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYWNoaW5lJTIwb3BlcmF0b3J8ZW58MHx8fHwxNzY3MzMyOTc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "machine operator"
+    },
+    {
+      "id": "map-placeholder",
+      "description": "Placeholder for Google Maps",
+      "imageUrl": "https://images.unsplash.com/photo-1603466183710-70b84997a93f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaXR5JTIwbWFwfGVufDB8fHx8MTc2NzI4ODAzMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city map"
+    }
+  ]
 }
