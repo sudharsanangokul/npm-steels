@@ -73,8 +73,12 @@ const MainNav = () => {
    
     return (
         <div className="border-b bg-background">
-            <div className="container flex h-16 items-center justify-center relative">
-                <nav className="hidden md:flex items-center gap-6">
+            <div className="container flex h-16 items-center justify-between relative">
+                 {/* Empty div for spacing */}
+                <div className="w-1/3"></div>
+
+                {/* Centered navigation */}
+                <nav className="hidden md:flex w-1/3 items-center justify-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -96,7 +100,8 @@ const MainNav = () => {
                     ))}
                 </nav>
 
-                <div className="hidden md:flex items-center gap-2 absolute right-8">
+                {/* Right-aligned items */}
+                <div className="hidden md:flex w-1/3 items-center justify-end gap-2">
                     <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
                         <Link href="/enquiry">Enquiry Form</Link>
                     </Button>
