@@ -1,5 +1,5 @@
 import { Construction, Flame, Layers, Move3d, Scissors, Wrench } from "lucide-react";
-import type { Product, Service } from "./types";
+import type { Product, Service, MegaMenuProduct } from "./types";
 
 export const products: Product[] = [
   {
@@ -101,4 +101,47 @@ export const services: Service[] = [
         description: "End-to-end fabrication solutions, from design assistance to final assembly, for your custom projects.",
         icon: Wrench
     },
+];
+
+export const megaMenuProducts: MegaMenuProduct[] = [
+    {
+        title: "HR Coils / Sheets / Plates / Slabs",
+        subCategories: ["E250A", "E250BR", "Chequered Plate", "HR Slabs up to 600mm thickness", "HRPO / CRCA Coils", "GI / GP Coils"]
+    },
+    {
+        title: "Quenched & Tempered High Yield Strength Plates",
+        subCategories: []
+    },
+    {
+        title: "Wear Resistant Plates",
+        subCategories: []
+    },
+    {
+        title: "Structural Plates",
+        subCategories: []
+    },
+    {
+        title: "High Manganese Plates",
+        subCategories: []
+    },
+    {
+        title: "Boiler Quality Plates",
+        subCategories: []
+    },
+    {
+        title: "Corten Plates",
+        subCategories: []
+    },
+    {
+        title: "Special Plates",
+        subCategories: []
+    },
+    {
+        title: "Equivalent Grades",
+        subCategories: []
+    },
+    {
+        title: "MS Structurals",
+        subCategories: []
+    }
 ];

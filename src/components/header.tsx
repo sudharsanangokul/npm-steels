@@ -1,20 +1,21 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { Menu, X, Mail, Clock, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import EnquiryCartIcon from "./enquiry-cart-icon";
-import { cn } from "@/lib/utils";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { Menu, X, Mail, Clock, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import EnquiryCartIcon from './enquiry-cart-icon';
+import { cn } from '@/lib/utils';
+import { ProductsMegaMenu } from './products-mega-menu';
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
-  { href: "/services", label: "Services" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact Us" },
+  { href: '/', label: 'Home' },
+  // { href: "/products", label: "Products" }, // Replaced by MegaMenu
+  { href: '/services', label: 'Services' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact Us' },
 ];
 
 const TopBar = () => (
@@ -75,8 +76,7 @@ const MainNav = () => {
     useEffect(() => {
         const controlNavbar = () => {
             if (typeof window !== 'undefined') {
-                // If scrolling down and past the top bar, hide the header
-                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                if (window.scrollY > lastScrollY && window.scrollY > 92) {
                     setHeaderVisible(false);
                 } else {
                     setHeaderVisible(true);
@@ -85,21 +85,29 @@ const MainNav = () => {
             }
         };
 
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', controlNavbar, { passive: true });
-            return () => window.removeEventListener('scroll', controlNavbar);
-        }
+        window.addEventListener('scroll', controlNavbar, { passive: true });
+        return () => window.removeEventListener('scroll', controlNavbar);
     }, [lastScrollY]);
 
 
     return (
         <div className={cn(
-            "border-b bg-background transition-transform duration-300 sticky top-[92px]",
-            headerVisible ? "transform-none" : "-translate-y-[200px]"
+            "border-b bg-background sticky top-0 transition-transform duration-300",
+            headerVisible ? "transform-none" : "-translate-y-full"
         )}>
             <div className="container flex h-16 items-center justify-center relative">
                 <nav className="hidden md:flex items-center gap-6">
-                    {navLinks.map((link) => (
+                    {navLinks.slice(0, 1).map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-red-600"
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                    <ProductsMegaMenu />
+                    {navLinks.slice(1).map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
@@ -137,7 +145,7 @@ const MainNav = () => {
                                     </Button>
                                 </div>
                                 <nav className="mt-8 flex flex-col gap-6">
-                                    {navLinks.map((link) => (
+                                    {[{ href: '/', label: 'Home' }, { href: '/products', label: 'Products' }, ...navLinks.slice(1)].map((link) => (
                                         <Link
                                             key={link.href}
                                             href={link.href}
@@ -165,6 +173,18 @@ const MainNav = () => {
 };
 
 const Header = () => {
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => setIsMounted(true), []);
+    
+    if (!isMounted) {
+        return (
+            <header className="fixed top-0 z-50 w-full">
+                <TopBar />
+                <div className="border-b bg-background h-16" />
+            </header>
+        );
+    }
+    
     return (
         <header className="fixed top-0 z-50 w-full">
             <TopBar />

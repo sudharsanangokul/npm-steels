@@ -18,3 +18,8 @@ export type Service = {
 export interface EnquiryItem extends Product {
   quantity: number;
 }
+
+export type MegaMenuProduct = {
+  title: string;
+  subCategories: string[];
+};
