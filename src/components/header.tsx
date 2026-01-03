@@ -72,10 +72,7 @@ const MainNav = () => {
     return (
         <div className="border-b bg-background">
             <div className="container relative flex h-16 items-center">
-                <div className="flex-1 flex justify-start">
-                    {/* Empty div for spacing */}
-                </div>
-                <nav className="flex-shrink-0 hidden md:flex items-center gap-6">
+                <nav className="hidden md:flex items-center gap-6 mx-auto">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -97,7 +94,7 @@ const MainNav = () => {
                     ))}
                 </nav>
 
-                <div className="flex-1 hidden md:flex items-center justify-end gap-2">
+                <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2">
                     <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
                         <Link href="/enquiry">Enquiry Form</Link>
                     </Button>
@@ -154,8 +151,8 @@ const MainNav = () => {
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
-    const topBarRef = useRef<HTMLDivElement>(null);
     const mainNavRef = useRef<HTMLDivElement>(null);
+    const [mainNavHeight, setMainNavHeight] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -166,6 +163,9 @@ const Header = () => {
             if (headerRef.current) {
                 const headerHeight = headerRef.current.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+            }
+            if (mainNavRef.current) {
+                setMainNavHeight(mainNavRef.current.offsetHeight);
             }
         };
 
@@ -180,19 +180,15 @@ const Header = () => {
     }, []);
 
     return (
-        <header ref={headerRef} className='fixed top-0 left-0 right-0 z-50 bg-background'>
-             <div ref={topBarRef}>
-                <TopBar />
-             </div>
-             <div
-                ref={mainNavRef}
-                className={cn(
-                    'w-full transition-transform duration-300',
-                    isScrolled ? '-translate-y-full' : 'translate-y-0'
-                )}
-            >
+        <header 
+            ref={headerRef} 
+            className='fixed top-0 left-0 right-0 z-50 bg-background transition-transform duration-300 ease-in-out'
+            style={{ transform: isScrolled ? `translateY(-${mainNavHeight}px)` : 'translateY(0)' }}
+        >
+             <TopBar />
+             <div ref={mainNavRef}>
                 <MainNav />
-            </div>
+             </div>
         </header>
     );
 };
