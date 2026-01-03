@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Mail, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import EnquiryCartIcon from "./enquiry-cart-icon";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -62,6 +63,30 @@ const TopBarInfo = () => (
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > lastScrollY && window.scrollY > 80) { // if scroll down hide the navbar
+        setNavVisible(false);
+      } else { // if scroll up show the navbar
+        setNavVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -74,7 +99,10 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="border-b">
+      <div className={cn(
+        "border-b transition-transform duration-300",
+        navVisible ? "translate-y-0" : "-translate-y-full"
+      )}>
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 lg:hidden">
             <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
