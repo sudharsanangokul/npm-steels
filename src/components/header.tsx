@@ -73,10 +73,13 @@ const MainNav = () => {
    
     return (
         <div className="border-b bg-background">
-            <div className="container flex h-16 items-center">
-                 <div className="flex-1 md:flex-none"></div>
+            <div className="container mx-auto flex h-16 items-center justify-between">
+                
+                {/* Empty div for spacing on the left */}
+                <div className="w-1/3"></div>
 
-                <nav className="hidden md:flex flex-1 absolute left-1/2 -translate-x-1/2 items-center justify-center gap-6">
+                {/* Centered Navigation */}
+                <nav className="hidden md:flex w-1/3 items-center justify-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -98,7 +101,8 @@ const MainNav = () => {
                     ))}
                 </nav>
 
-                <div className="hidden md:flex flex-1 items-center justify-end gap-2">
+                {/* Right Aligned Items */}
+                <div className="hidden md:flex w-1/3 items-center justify-end gap-2">
                     <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
                         <Link href="/enquiry">Enquiry Form</Link>
                     </Button>
@@ -176,19 +180,17 @@ const Header = () => {
     }, [lastScrollY]);
 
     return (
-        <>
-            <header className="fixed top-0 z-50 w-full">
-                <TopBar />
-            </header>
-            <div
+        <div className='fixed top-0 left-0 right-0 z-50'>
+            <TopBar />
+             <div
                 className={cn(
-                    'fixed top-[77px] w-full z-40 transition-transform duration-300',
+                    'w-full z-40 transition-transform duration-300',
                     mainNavVisible ? 'transform-none' : '-translate-y-full'
                 )}
             >
                 <MainNav />
             </div>
-        </>
+        </div>
     );
 };
 
