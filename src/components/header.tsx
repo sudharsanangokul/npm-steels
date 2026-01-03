@@ -72,7 +72,8 @@ const MainNav = () => {
     return (
         <div className="border-b bg-background">
             <div className="container relative flex h-16 items-center">
-                <nav className="hidden md:flex items-center gap-6 mx-auto">
+                <div className="flex-1" />
+                <nav className="hidden md:flex flex-none items-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -94,14 +95,17 @@ const MainNav = () => {
                     ))}
                 </nav>
 
-                <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2">
-                    <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
-                        <Link href="/enquiry">Enquiry Form</Link>
-                    </Button>
-                    <EnquiryCartIcon />
+                <div className="flex-1 flex justify-end">
+                    <div className="hidden md:flex items-center gap-2">
+                        <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
+                            <Link href="/enquiry">Enquiry Form</Link>
+                        </Button>
+                        <EnquiryCartIcon />
+                    </div>
                 </div>
 
                 <div className="flex md:hidden items-center ml-auto">
+                     <EnquiryCartIcon />
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon">
