@@ -75,8 +75,7 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
             isVisible ? 'translate-y-0' : '-translate-y-full'
         )}>
             <div className="container relative flex h-16 items-center">
-                <div className="flex-1" />
-                <nav className="hidden md:flex flex-none items-center gap-6">
+                <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -98,57 +97,57 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
                     ))}
                 </nav>
 
-                <div className="flex-1 flex justify-end">
-                    <div className="hidden md:flex items-center gap-2">
-                        <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
-                            <Link href="/enquiry">Enquiry Form</Link>
-                        </Button>
-                        <EnquiryCartIcon />
-                    </div>
-                </div>
+                <div className="absolute right-0 flex items-center">
+                  <div className="hidden md:flex items-center gap-2">
+                      <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
+                          <Link href="/enquiry">Enquiry Form</Link>
+                      </Button>
+                      <EnquiryCartIcon />
+                  </div>
 
-                <div className="flex md:hidden items-center ml-auto">
-                     <EnquiryCartIcon />
-                    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                        <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                                <Menu className="h-6 w-6" />
-                                <span className="sr-only">Toggle Menu</span>
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="right" className="w-full max-w-xs bg-card">
-                            <div className="flex h-full flex-col">
-                                <div className="flex items-center justify-between border-b pb-4">
-                                    <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                                        <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
-                                    </Link>
-                                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                                        <X className="h-6 w-6" />
-                                        <span className="sr-only">Close Menu</span>
-                                    </Button>
-                                </div>
-                                <nav className="mt-8 flex flex-col gap-6">
-                                    {[{ href: '/', label: 'Home' }, { href: '/products', label: 'Products' }, ...navLinks.slice(1)].map((link) => (
-                                        <Link
-                                            key={link.href}
-                                            href={link.href}
-                                            onClick={() => setIsOpen(false)}
-                                            className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
-                                </nav>
-                                <div className="mt-auto border-t pt-6">
-                                    <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white">
-                                        <Link href="/enquiry" onClick={() => setIsOpen(false)}>
-                                            Enquiry Form
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+                  <div className="flex md:hidden items-center ml-auto">
+                      <EnquiryCartIcon />
+                      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                          <SheetTrigger asChild>
+                              <Button variant="ghost" size="icon">
+                                  <Menu className="h-6 w-6" />
+                                  <span className="sr-only">Toggle Menu</span>
+                              </Button>
+                          </SheetTrigger>
+                          <SheetContent side="right" className="w-full max-w-xs bg-card">
+                              <div className="flex h-full flex-col">
+                                  <div className="flex items-center justify-between border-b pb-4">
+                                      <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                                          <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
+                                      </Link>
+                                      <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                                          <X className="h-6 w-6" />
+                                          <span className="sr-only">Close Menu</span>
+                                      </Button>
+                                  </div>
+                                  <nav className="mt-8 flex flex-col gap-6">
+                                      {[{ href: '/', label: 'Home' }, { href: '/products', label: 'Products' }, ...navLinks.slice(1)].map((link) => (
+                                          <Link
+                                              key={link.href}
+                                              href={link.href}
+                                              onClick={() => setIsOpen(false)}
+                                              className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                                          >
+                                              {link.label}
+                                          </Link>
+                                      ))}
+                                  </nav>
+                                  <div className="mt-auto border-t pt-6">
+                                      <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white">
+                                          <Link href="/enquiry" onClick={() => setIsOpen(false)}>
+                                              Enquiry Form
+                                          </Link>
+                                      </Button>
+                                  </div>
+                              </div>
+                          </SheetContent>
+                      </Sheet>
+                  </div>
                 </div>
             </div>
         </div>
@@ -163,25 +162,25 @@ const Header = () => {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            if (headerRef.current) {
-                // Determine scroll direction
-                if (currentScrollY > lastScrollY.current && currentScrollY > headerRef.current.clientHeight) {
-                    setIsScrolledDown(true); // Scrolling Down
-                } else {
-                    setIsScrolledDown(false); // Scrolling Up
-                }
+            
+            // Show/hide main nav based on scroll direction
+            if (currentScrollY > lastScrollY.current && currentScrollY > (headerRef.current?.clientHeight ?? 150)) {
+                setIsScrolledDown(true); // Scrolling Down
+            } else {
+                setIsScrolledDown(false); // Scrolling Up
             }
             lastScrollY.current = currentScrollY;
         };
 
         const setPadding = () => {
             if (headerRef.current) {
+                // Set padding based on the initial, full height of the header
                 const headerHeight = headerRef.current.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
             }
         };
-        
-        // Call setPadding on mount and on resize
+
+        // Set initial padding and add listeners
         setPadding();
         window.addEventListener('resize', setPadding);
         window.addEventListener('scroll', handleScroll, { passive: true });
