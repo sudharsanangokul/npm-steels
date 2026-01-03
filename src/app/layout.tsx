@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { EnquiryProvider } from "@/context/enquiry-context";
+import FloatingContactBar from "@/components/floating-contact-bar";
 
 export const metadata: Metadata = {
   title: "NTM Metals - Steel Solutions",
@@ -46,6 +47,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <main className="flex-1" style={{ paddingTop: 'var(--header-height)' }}>{children}</main>
+            <FloatingContactBar />
             <Footer />
           </div>
           <Toaster />
