@@ -16,12 +16,11 @@ export const ProductsMegaMenu = () => {
 
   return (
     <div className="group relative">
-      <Link
-        href="/products"
-        className="text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-red-600 flex items-center"
+      <span
+        className="text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-red-600 flex items-center cursor-pointer"
       >
         Products
-      </Link>
+      </span>
       
       <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto z-50">
         <div className="w-[600px] bg-card border rounded-md shadow-lg grid grid-cols-2">
@@ -47,7 +46,7 @@ export const ProductsMegaMenu = () => {
                     <ul className="space-y-2">
                         {getActiveSubCategories().map(sub => (
                             <li key={sub}>
-                                <Link href="/products" className="text-sm text-foreground hover:text-red-600 hover:font-semibold">
+                                <Link href="/" className="text-sm text-foreground hover:text-red-600 hover:font-semibold">
                                     {sub}
                                 </Link>
                             </li>

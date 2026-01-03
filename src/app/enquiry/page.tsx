@@ -35,7 +35,7 @@ export default function EnquiryPage() {
             <h2 className="text-2xl font-semibold mb-2">Your enquiry list is empty.</h2>
             <p className="text-muted-foreground mb-6">Browse our products to add items for a quote.</p>
             <Button asChild>
-              <Link href="/products">Explore Products</Link>
+              <Link href="/">Explore Products</Link>
             </Button>
           </div>
         ) : (
