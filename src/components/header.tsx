@@ -22,7 +22,7 @@ const TopBar = () => (
     <div className="bg-background/95 backdrop-blur-sm border-b">
         <div className="container mx-auto flex items-center justify-between py-2">
             <Link href="/" className="flex items-center">
-                <Image src="/logo.jpg" alt="SRK International Logo" width={200} height={60} className="object-contain" />
+                <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
             </Link>
             <div className="hidden lg:flex flex-wrap items-center justify-end gap-x-6 gap-y-2 text-sm">
                 <div className="flex items-center gap-2">
@@ -73,10 +73,10 @@ const MainNav = () => {
    
     return (
         <div className="border-b bg-background">
-            <div className="container flex h-16 items-center justify-between">
+            <div className="container flex h-16 items-center">
                  <div className="flex-1 md:flex-none"></div>
 
-                <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-6">
+                <nav className="hidden md:flex flex-1 absolute left-1/2 -translate-x-1/2 items-center justify-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -182,7 +182,7 @@ const Header = () => {
             </header>
             <div
                 className={cn(
-                    'fixed top-[92px] w-full z-40 transition-transform duration-300',
+                    'fixed top-[77px] w-full z-40 transition-transform duration-300',
                     mainNavVisible ? 'transform-none' : '-translate-y-full'
                 )}
             >

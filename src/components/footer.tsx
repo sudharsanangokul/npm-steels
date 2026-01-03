@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center mb-2">
-                <Image src="/logo.jpg" alt="SRK International Logo" width={200} height={60} className="object-contain" />
+                <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
             </Link>
             <p className="mt-2 text-muted-foreground max-w-md">
               Your premier source for top-grade steel sheets and expert metal fabrication services. Quality and precision you can build on.
