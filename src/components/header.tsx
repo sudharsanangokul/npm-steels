@@ -34,8 +34,7 @@ const TopBar = () => (
                 <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-red-500" />
                     <div>
-                        <p className="font-bold">FOR ACCOUNTS</p>
-                        <a href="mailto:accounts@srkinternational.co.in" className="hover:underline">accounts@srkinternational.co.in</a>
+                        <p className="font-bold">FOR ACCOUNTS</p>                        <a href="mailto:accounts@srkinternational.co.in" className="hover:underline">accounts@srkinternational.co.in</a>
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
