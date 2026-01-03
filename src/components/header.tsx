@@ -68,7 +68,7 @@ const Header = () => {
 
   const controlNavbar = () => {
     if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY && window.scrollY > 80) {
+      if (window.scrollY > lastScrollY && window.scrollY > 150) { // Start hiding after scrolling 150px
         setNavVisible(false);
       } else {
         setNavVisible(true);
@@ -79,7 +79,7 @@ const Header = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
+      window.addEventListener('scroll', controlNavbar, { passive: true });
       return () => {
         window.removeEventListener('scroll', controlNavbar);
       };
@@ -87,7 +87,7 @@ const Header = () => {
   }, [lastScrollY]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background">
+    <header className="fixed top-0 z-50 w-full bg-background/95 backdrop-blur-sm">
       <div className="hidden lg:block border-b">
          <div className="container mx-auto flex items-center justify-between py-2">
             <Link href="/" className="flex items-center">
@@ -98,8 +98,8 @@ const Header = () => {
       </div>
 
       <div className={cn(
-        "border-b transition-transform duration-300 bg-background",
-        navVisible ? "translate-y-0" : "-translate-y-full"
+        "border-b transition-all duration-300 bg-background",
+        navVisible ? "transform-none" : "-translate-y-full absolute w-full"
       )}>
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 lg:hidden">
