@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Mail, Clock, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -12,7 +12,6 @@ import { ProductsMegaMenu } from './products-mega-menu';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  // { href: "/products", label: "Products" }, // Replaced by MegaMenu
   { href: '/services', label: 'Services' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact Us' },
@@ -74,7 +73,7 @@ const MainNav = () => {
     return (
         <div className="border-b bg-background">
             <div className="container relative flex h-16 items-center">
-                 <div className="flex-1 flex justify-start">
+                <div className="flex-1 flex justify-start">
                     {/* Empty div for spacing */}
                 </div>
                 <nav className="flex-shrink-0 hidden md:flex items-center gap-6">
@@ -155,26 +154,42 @@ const MainNav = () => {
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const headerRef = useRef<HTMLElement>(null);
+    const topBarRef = useRef<HTMLDivElement>(null);
+    const mainNavRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
-            // Checks if user has scrolled more than a small threshold (e.g., 10px)
             setIsScrolled(window.scrollY > 10);
         };
 
+        const setPadding = () => {
+            if (headerRef.current) {
+                const headerHeight = headerRef.current.offsetHeight;
+                document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+            }
+        };
+
+        setPadding();
         window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', setPadding);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', setPadding);
         };
     }, []);
 
     return (
-        <header className='fixed top-0 left-0 right-0 z-50'>
-             <TopBar />
+        <header ref={headerRef} className='fixed top-0 left-0 right-0 z-50 bg-background'>
+             <div ref={topBarRef}>
+                <TopBar />
+             </div>
              <div
+                ref={mainNavRef}
                 className={cn(
-                    'w-full z-40 transition-transform duration-300',
-                    isScrolled ? '-translate-y-full' : 'transform-none'
+                    'w-full transition-transform duration-300',
+                    isScrolled ? '-translate-y-full' : 'translate-y-0'
                 )}
             >
                 <MainNav />
