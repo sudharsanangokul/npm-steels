@@ -66,6 +66,11 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const controlNavbar = () => {
     if (typeof window !== 'undefined') {
@@ -93,7 +98,7 @@ const Header = () => {
     <header className="fixed top-0 z-50 w-full">
       <div className={cn(
         "relative transition-transform duration-300",
-        headerVisible ? "transform-none" : "lg:-translate-y-[140px]"
+        isMounted && (headerVisible ? "transform-none" : "lg:-translate-y-[140px]")
       )}>
         <div className="bg-background/95 backdrop-blur-sm border-b">
             <div className="container mx-auto flex items-center justify-between py-2">
