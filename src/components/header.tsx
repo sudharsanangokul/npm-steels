@@ -3,14 +3,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Mail, Clock, Phone } from 'lucide-react';
+import { Menu, X, Mail, Clock, Phone, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { ProductsMegaMenu } from './products-mega-menu';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { megaMenuProducts } from '@/lib/data';
+
+function slugify(text: string) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+}
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '#', label: 'Products' },
   { href: '/services', label: 'Services' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact Us' },
@@ -54,9 +66,6 @@ const TopBar = () => (
                     <Phone className="h-4 w-4 text-red-500" />
                     <a href="tel:+919444000533" className="font-bold hover:underline">+91 94440 00533</a>
                 </div>
-                <Button asChild className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 h-auto">
-                    <Link href="/contact">CONTACT</Link>
-                </Button>
             </div>
             <div className="lg:hidden">
               <Sheet>
@@ -66,7 +75,7 @@ const TopBar = () => (
                           <span className="sr-only">Toggle Menu</span>
                       </Button>
                   </SheetTrigger>
-                  <SheetContent side="right" className="w-full max-w-xs bg-card">
+                  <SheetContent side="right" className="w-full max-w-sm bg-card overflow-y-auto">
                     <MobileNav />
                   </SheetContent>
               </Sheet>
@@ -76,24 +85,54 @@ const TopBar = () => (
 );
 
 const MobileNav = () => {
-    const [isOpen, setIsOpen] = useState(true); // Manages its own state within the sheet
     return (
         <div className="flex h-full flex-col">
             <div className="flex items-center justify-between border-b pb-4">
-                <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                <Link href="/" className="flex items-center gap-2">
                     <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
                 </Link>
             </div>
-            <nav className="mt-8 flex flex-col gap-6">
+            <nav className="mt-8 flex flex-col gap-1">
                  {navLinks.map((link) => (
-                    <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                    >
-                        {link.label}
-                    </Link>
+                    link.label === 'Products' ? (
+                        <Accordion type="single" collapsible className="w-full" key={link.label}>
+                            <AccordionItem value="products" className="border-b-0">
+                                <AccordionTrigger className="py-4 text-lg font-medium text-foreground transition-colors hover:text-primary hover:no-underline">
+                                    {link.label}
+                                </AccordionTrigger>
+                                <AccordionContent className="pl-4">
+                                    <Accordion type="multiple" className="w-full">
+                                        {megaMenuProducts.map((category) => (
+                                            <AccordionItem value={category.title} key={category.title}>
+                                                <AccordionTrigger className="py-3 text-base text-muted-foreground hover:no-underline">{category.title}</AccordionTrigger>
+                                                <AccordionContent className="pl-4">
+                                                    <div className="flex flex-col gap-3 pt-2">
+                                                        {category.subCategories.map((sub) => (
+                                                            <Link
+                                                                href={`/products/${slugify(sub)}`}
+                                                                key={sub}
+                                                                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                                                            >
+                                                                {sub}
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        ))}
+                                    </Accordion>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    ) : (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="py-4 text-lg font-medium text-foreground transition-colors hover:text-primary border-b"
+                        >
+                            {link.label}
+                        </Link>
+                    )
                 ))}
             </nav>
         </div>
@@ -119,7 +158,7 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
                         </Link>
                     ))}
                     <ProductsMegaMenu />
-                    {navLinks.slice(1).map((link) => (
+                    {navLinks.slice(2).map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
@@ -151,6 +190,7 @@ const Header = () => {
         };
 
         setPadding();
+        handleScroll();
         window.addEventListener('resize', setPadding);
         window.addEventListener('scroll', handleScroll, { passive: true });
 
