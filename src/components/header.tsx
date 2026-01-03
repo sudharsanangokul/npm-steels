@@ -73,13 +73,8 @@ const MainNav = () => {
    
     return (
         <div className="border-b bg-background">
-            <div className="container mx-auto flex h-16 items-center justify-between">
-                
-                {/* Empty div for spacing on the left */}
-                <div className="w-1/3"></div>
-
-                {/* Centered Navigation */}
-                <nav className="hidden md:flex w-1/3 items-center justify-center gap-6">
+            <div className="container relative flex h-16 items-center justify-center">
+                <nav className="hidden md:flex items-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -101,15 +96,14 @@ const MainNav = () => {
                     ))}
                 </nav>
 
-                {/* Right Aligned Items */}
-                <div className="hidden md:flex w-1/3 items-center justify-end gap-2">
+                <div className="absolute right-8 hidden md:flex items-center gap-2">
                     <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
                         <Link href="/enquiry">Enquiry Form</Link>
                     </Button>
                     <EnquiryCartIcon />
                 </div>
 
-                <div className="md:hidden flex items-center ml-auto">
+                <div className="absolute right-8 flex items-center md:hidden">
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon">
@@ -118,7 +112,7 @@ const MainNav = () => {
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="right" className="w-full max-w-xs bg-card">
-                            <div className="flex flex-col h-full">
+                            <div className="flex h-full flex-col">
                                 <div className="flex items-center justify-between border-b pb-4">
                                     <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
                                         <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
@@ -163,8 +157,7 @@ const Header = () => {
     useEffect(() => {
         const controlNavbar = () => {
             if (typeof window !== 'undefined') {
-                // If scrolling down and past the top bar height
-                if (window.scrollY > lastScrollY && window.scrollY > 92) {
+                if (window.scrollY > lastScrollY && window.scrollY > 80) { // Height of TopBar approx 79px + buffer
                     setMainNavVisible(false);
                 } else {
                     setMainNavVisible(true);
@@ -181,7 +174,7 @@ const Header = () => {
 
     return (
         <div className='fixed top-0 left-0 right-0 z-50'>
-            <TopBar />
+             <TopBar />
              <div
                 className={cn(
                     'w-full z-40 transition-transform duration-300',
