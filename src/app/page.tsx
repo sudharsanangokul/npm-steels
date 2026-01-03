@@ -6,6 +6,8 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import { services, products } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Product } from "@/lib/types";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const getImageUrl = (id: string) => {
   return PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -19,10 +21,18 @@ const getProductImageUrl = (product: Product) => {
 
 export default function Home() {
   const featuredProducts = products.slice(0, 4);
+  const carouselImages = [
+    PlaceHolderImages.find(img => img.id === 'hr-steel-sheet'),
+    PlaceHolderImages.find(img => img.id === 'gallery-5'),
+    PlaceHolderImages.find(img => img.id === 'service-laser'),
+    PlaceHolderImages.find(img => img.id === 'gallery-1'),
+    PlaceHolderImages.find(img => img.id === 'service-plasma'),
+  ].filter(Boolean);
+
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center text-center bg-gray-200/50 dark:bg-gray-800/20">
+      <section className="relative w-full flex items-center justify-center text-center bg-gray-200/50 dark:bg-gray-800/20 pt-16 pb-12 md:pt-24 md:pb-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
         <div className="relative z-10 p-4 animate-in fade-in slide-in-from-bottom-12 duration-700 container">
           <h1 className="font-headline text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-red-600 uppercase">
@@ -31,6 +41,41 @@ export default function Home() {
           <p className="mt-6 max-w-4xl mx-auto text-lg md:text-xl text-foreground/80">
             Importers, Indenting Agents, Super Stockists & Wholesale Dealers of All Kinds of Iron & Steel Raw Materials
           </p>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-background">
+        <div className="container mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 5000,
+                  stopOnInteraction: false,
+                }),
+              ]}
+              className="w-full overflow-hidden rounded-lg"
+            >
+              <CarouselContent>
+                {carouselImages.map((image) => (
+                  image &&
+                  <CarouselItem key={image.id}>
+                    <div className="relative h-[30vh] md:h-[50vh] w-full">
+                       <Image
+                          src={image.imageUrl}
+                          alt={image.description}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={image.imageHint}
+                        />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
         </div>
       </section>
 
