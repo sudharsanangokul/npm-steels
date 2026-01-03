@@ -45,7 +45,7 @@ export default function RootLayout({
         <EnquiryProvider>
           <div className="relative flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1 pt-[210px]">{children}</main>
+            <main className="flex-1 pt-[170px]">{children}</main>
             <Footer />
           </div>
           <Toaster />
