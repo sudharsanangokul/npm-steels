@@ -23,10 +23,10 @@ export const ProductsMegaMenu = () => {
         Products
       </Link>
       
-      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
-        <div className="w-[600px] bg-white border border-gray-200 rounded-md shadow-lg grid grid-cols-2">
+      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto z-50">
+        <div className="w-[600px] bg-card border rounded-md shadow-lg grid grid-cols-2">
             {/* Left Column */}
-            <div className="p-2 space-y-1">
+            <div className="p-2 space-y-1 bg-background/95 rounded-l-md">
                 {megaMenuProducts.map(category => (
                     <button
                         key={category.title}
@@ -42,19 +42,19 @@ export const ProductsMegaMenu = () => {
                 ))}
             </div>
             {/* Right Column */}
-            <div className="p-4">
+            <div className="p-4 bg-background rounded-r-md">
                 {getActiveSubCategories().length > 0 ? (
                     <ul className="space-y-2">
                         {getActiveSubCategories().map(sub => (
                             <li key={sub}>
-                                <Link href="/products" className="text-sm text-gray-700 hover:text-red-600 hover:font-semibold">
+                                <Link href="/products" className="text-sm text-foreground hover:text-red-600 hover:font-semibold">
                                     {sub}
                                 </Link>
                             </li>
                         ))}
                     </ul>
                 ) : (
-                    <div className="flex items-center justify-center h-full text-sm text-gray-500">
+                    <div className="flex items-center justify-center h-full text-sm text-muted-foreground">
                         Select a category to see more.
                     </div>
                 )}
