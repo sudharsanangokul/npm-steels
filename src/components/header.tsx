@@ -70,31 +70,9 @@ const TopBar = () => (
 
 const MainNav = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const [headerVisible, setHeaderVisible] = useState(true);
-
-    useEffect(() => {
-        const controlNavbar = () => {
-            if (typeof window !== 'undefined') {
-                if (window.scrollY > lastScrollY && window.scrollY > 92) {
-                    setHeaderVisible(false);
-                } else {
-                    setHeaderVisible(true);
-                }
-                setLastScrollY(window.scrollY);
-            }
-        };
-
-        window.addEventListener('scroll', controlNavbar, { passive: true });
-        return () => window.removeEventListener('scroll', controlNavbar);
-    }, [lastScrollY]);
-
-
+   
     return (
-        <div className={cn(
-            "border-b bg-background sticky top-0 transition-transform duration-300",
-            headerVisible ? "transform-none" : "-translate-y-full"
-        )}>
+        <div className="border-b bg-background">
             <div className="container flex h-16 items-center justify-center relative">
                 <nav className="hidden md:flex items-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
@@ -174,12 +152,30 @@ const MainNav = () => {
 
 const Header = () => {
     const [isMounted, setIsMounted] = useState(false);
-    useEffect(() => setIsMounted(true), []);
-    
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [mainNavVisible, setMainNavVisible] = useState(true);
+
+    useEffect(() => {
+        setIsMounted(true);
+        const controlNavbar = () => {
+            if (typeof window !== 'undefined') {
+                if (window.scrollY > lastScrollY && window.scrollY > 92) {
+                    setMainNavVisible(false);
+                } else {
+                    setMainNavVisible(true);
+                }
+                setLastScrollY(window.scrollY);
+            }
+        };
+
+        window.addEventListener('scroll', controlNavbar, { passive: true });
+        return () => window.removeEventListener('scroll', controlNavbar);
+    }, [lastScrollY]);
+
     if (!isMounted) {
         return (
             <header className="fixed top-0 z-50 w-full">
-                <TopBar />
+                <div className="h-[92px]" />
                 <div className="border-b bg-background h-16" />
             </header>
         );
@@ -188,7 +184,12 @@ const Header = () => {
     return (
         <header className="fixed top-0 z-50 w-full">
             <TopBar />
-            <MainNav />
+            <div className={cn(
+                "transition-transform duration-300",
+                mainNavVisible ? "transform-none" : "-translate-y-full"
+            )}>
+                <MainNav />
+            </div>
         </header>
     );
 };
