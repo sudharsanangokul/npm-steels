@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Layers, Scissors, Wrench } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { services, products } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Product } from "@/lib/types";
@@ -19,37 +19,18 @@ const getProductImageUrl = (product: Product) => {
 
 export default function Home() {
   const featuredProducts = products.slice(0, 4);
-  const heroImage = PlaceHolderImages.find(img => img.id === 'hero-1');
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt="Steel fabrication"
-            fill
-            className="object-cover"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 p-4 animate-in fade-in slide-in-from-bottom-12 duration-700">
-          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight">
-            NTM METALS
+      <section className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center text-center bg-gray-200/50 dark:bg-gray-800/20">
+        <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+        <div className="relative z-10 p-4 animate-in fade-in slide-in-from-bottom-12 duration-700 container">
+          <h1 className="font-headline text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-red-600 uppercase">
+            India's Only Steel Wholesalers to Maintain Stocks of CR Sheets from 0.35mm & HR Plates from 1.6mm Above & HR Slabs Upto 600mm Thickness with UT & TC Pass
           </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-primary-foreground/90">
-            Your Trusted Partner for High-Quality Steel Sheets and Precision Cutting Services
+          <p className="mt-6 max-w-4xl mx-auto text-lg md:text-xl text-foreground/80">
+            Importers, Indenting Agents, Super Stockists & Wholesale Dealers of All Kinds of Iron & Steel Raw Materials
           </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button asChild size="lg" className="font-semibold">
-              <Link href="/products">View Products <ArrowRight className="ml-2" /></Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="font-semibold bg-transparent text-white border-white hover:bg-white hover:text-black">
-              <Link href="/contact">Get a Quote</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
