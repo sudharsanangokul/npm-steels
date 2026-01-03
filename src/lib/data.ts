@@ -68,6 +68,18 @@ export const products: Product[] = [
       "Grade": "JIS G3131, SAPH series",
     },
   },
+  {
+    id: 'e250a',
+    name: 'E250A',
+    category: 'IS 2062 Mild Steel Plates',
+    description: 'Mild Steel plates are offered in a variety of thicknesses, lengths, radii, dimensions, diameters, and more. These plates are utilized in various industries due to their excellent workability, formability, durability, installation, machinability, weldability, and fabrication properties.',
+    specs: {
+      "Product Name": "IS 2062 Gr A",
+      "Thickness": "5 mm - 150 mm",
+      "Length": "6000 mm - 12000 mm",
+      "Width": "1500 mm - 3000 mm"
+    }
+  }
 ];
 
 export const services: Service[] = [

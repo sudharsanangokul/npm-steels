@@ -6,6 +6,15 @@ import { ChevronRight } from 'lucide-react';
 import { megaMenuProducts } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
+function slugify(text: string) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+}
+
 export const ProductsMegaMenu = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(megaMenuProducts[0].title);
 
@@ -46,7 +55,7 @@ export const ProductsMegaMenu = () => {
                     <ul className="space-y-2">
                         {getActiveSubCategories().map(sub => (
                             <li key={sub}>
-                                <Link href="/" className="text-sm text-foreground hover:text-red-600 hover:font-semibold">
+                                <Link href={`/products/${slugify(sub)}`} className="text-sm text-foreground hover:text-red-600 hover:font-semibold">
                                     {sub}
                                 </Link>
                             </li>
