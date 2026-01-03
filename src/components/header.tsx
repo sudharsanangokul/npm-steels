@@ -99,9 +99,6 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
 
                 <div className="absolute right-0 flex items-center">
                   <div className="hidden md:flex items-center gap-2">
-                      <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
-                          <Link href="/enquiry">Enquiry Form</Link>
-                      </Button>
                       <EnquiryCartIcon />
                   </div>
 
@@ -137,13 +134,6 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
                                           </Link>
                                       ))}
                                   </nav>
-                                  <div className="mt-auto border-t pt-6">
-                                      <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white">
-                                          <Link href="/enquiry" onClick={() => setIsOpen(false)}>
-                                              Enquiry Form
-                                          </Link>
-                                      </Button>
-                                  </div>
                               </div>
                           </SheetContent>
                       </Sheet>
