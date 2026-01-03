@@ -28,7 +28,7 @@ export default function Home() {
       <section className="relative w-full flex items-center justify-center text-center bg-gray-200/50 dark:bg-gray-800/20 pt-16 pb-12 md:pt-24 md:pb-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
         <div className="relative z-10 p-4 animate-in fade-in slide-in-from-bottom-12 duration-700 container">
-          <h1 className="font-headline text-xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-red-600 uppercase">
+          <h1 className="font-headline text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-red-600 uppercase">
             India's Only Steel Wholesalers to Maintain Stocks of CR Sheets from 0.35mm & HR Plates from 1.6mm Above & HR Slabs Upto 600mm Thickness with UT & TC Pass
           </h1>
           <p className="mt-6 max-w-4xl mx-auto text-base sm:text-lg md:text-xl text-foreground/80">

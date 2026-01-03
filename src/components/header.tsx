@@ -30,7 +30,7 @@ const navLinks = [
 
 const TopBar = () => (
     <div className="bg-background/95 backdrop-blur-sm border-b z-20 relative">
-        <div className="container mx-auto flex items-center justify-between py-2">
+        <div className="container mx-auto flex items-center justify-between py-2 h-24">
             <Link href="/" className="flex items-center">
                 <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
             </Link>
@@ -92,11 +92,11 @@ const MobileNav = () => {
                     <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
                 </Link>
             </div>
-            <nav className="mt-8 flex flex-col gap-1">
+            <nav className="mt-4 flex flex-col">
                  {navLinks.map((link) => (
                     link.label === 'Products' ? (
                         <Accordion type="single" collapsible className="w-full" key={link.label}>
-                            <AccordionItem value="products" className="border-b-0">
+                            <AccordionItem value="products" className="border-b">
                                 <AccordionTrigger className="py-4 text-lg font-medium text-foreground transition-colors hover:text-primary hover:no-underline">
                                     {link.label}
                                 </AccordionTrigger>
