@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = allProducts.find(p => p.id === params.slug);
@@ -36,8 +37,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <section className="bg-background py-16 md:py-24">
         <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="lg:col-span-2">
+            <div className="max-w-4xl mx-auto">
+                <div>
                     <h2 className="font-headline text-2xl md:text-3xl font-bold">
                         {product.category}
                     </h2>
@@ -58,19 +59,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="lg:col-span-1">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="font-headline text-2xl">Need a Quote?</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-6">Contact us directly for pricing and more information about this product.</p>
-                             <Button asChild size="lg" className="w-full font-semibold">
-                                <Link href="/enquiry">Request a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                            </Button>
-                        </CardContent>
-                    </Card>
                 </div>
             </div>
         </div>

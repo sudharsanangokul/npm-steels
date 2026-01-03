@@ -85,7 +85,7 @@ const MobileNav = () => {
                 </Link>
             </div>
             <nav className="mt-8 flex flex-col gap-6">
-                 {[{ href: '/', label: 'Home' }, ...navLinks.slice(1)].map((link) => (
+                 {navLinks.map((link) => (
                     <Link
                         key={link.href}
                         href={link.href}
@@ -95,9 +95,6 @@ const MobileNav = () => {
                         {link.label}
                     </Link>
                 ))}
-                <Link href="/enquiry" onClick={() => setIsOpen(false)} className="text-lg font-medium text-foreground transition-colors hover:text-primary">
-                    Request a Quote
-                </Link>
             </nav>
         </div>
     );
@@ -132,34 +129,18 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
                         </Link>
                     ))}
                 </nav>
-
-                <div className="absolute right-0 flex items-center">
-                  <div className="hidden md:flex items-center gap-2">
-                       <Button asChild className="bg-red-600 hover:bg-red-700 text-white font-bold">
-                            <Link href="/enquiry">Request a Quote</Link>
-                        </Button>
-                  </div>
-                </div>
             </div>
         </div>
     );
 };
 
 const Header = () => {
-    const [isScrolledDown, setIsScrolledDown] = useState(false);
+    const [isAtTop, setIsAtTop] = useState(true);
     const headerRef = useRef<HTMLElement>(null);
-    const lastScrollY = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > lastScrollY.current && currentScrollY > (headerRef.current?.clientHeight ?? 150)) {
-                setIsScrolledDown(true); 
-            } else {
-                setIsScrolledDown(false);
-            }
-            lastScrollY.current = currentScrollY;
+            setIsAtTop(window.scrollY < 10);
         };
 
         const setPadding = () => {
@@ -185,7 +166,7 @@ const Header = () => {
             className='fixed top-0 left-0 right-0 z-50 bg-background'
         >
              <TopBar />
-             <MainNav isVisible={!isScrolledDown} />
+             <MainNav isVisible={isAtTop} />
         </header>
     );
 };
