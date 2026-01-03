@@ -151,14 +151,13 @@ const MainNav = () => {
 };
 
 const Header = () => {
-    const [isMounted, setIsMounted] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [mainNavVisible, setMainNavVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
-        setIsMounted(true);
         const controlNavbar = () => {
             if (typeof window !== 'undefined') {
+                // If scrolling down and past the top bar height
                 if (window.scrollY > lastScrollY && window.scrollY > 92) {
                     setMainNavVisible(false);
                 } else {
@@ -169,28 +168,25 @@ const Header = () => {
         };
 
         window.addEventListener('scroll', controlNavbar, { passive: true });
-        return () => window.removeEventListener('scroll', controlNavbar);
+        return () => {
+            window.removeEventListener('scroll', controlNavbar);
+        };
     }, [lastScrollY]);
 
-    if (!isMounted) {
-        return (
-            <header className="fixed top-0 z-50 w-full">
-                <div className="h-[92px]" />
-                <div className="border-b bg-background h-16" />
-            </header>
-        );
-    }
-    
     return (
-        <header className="fixed top-0 z-50 w-full">
-            <TopBar />
-            <div className={cn(
-                "transition-transform duration-300",
-                mainNavVisible ? "transform-none" : "-translate-y-full"
-            )}>
+        <>
+            <header className="fixed top-0 z-50 w-full">
+                <TopBar />
+            </header>
+            <div
+                className={cn(
+                    'fixed top-[92px] w-full z-40 transition-transform duration-300',
+                    mainNavVisible ? 'transform-none' : '-translate-y-full'
+                )}
+            >
                 <MainNav />
             </div>
-        </header>
+        </>
     );
 };
 
