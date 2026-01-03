@@ -18,7 +18,7 @@ const navLinks = [
 ];
 
 const TopBar = () => (
-    <div className="bg-background/95 backdrop-blur-sm border-b">
+    <div className="bg-background/95 backdrop-blur-sm border-b z-20 relative">
         <div className="container mx-auto flex items-center justify-between py-2">
             <Link href="/" className="flex items-center">
                 <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
@@ -71,7 +71,7 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
    
     return (
         <div className={cn(
-            "border-b bg-background transition-transform duration-300 ease-in-out",
+            "border-b bg-background transition-transform duration-300 ease-in-out relative z-10",
             isVisible ? 'translate-y-0' : '-translate-y-full'
         )}>
             <div className="container relative flex h-16 items-center">
@@ -163,29 +163,25 @@ const Header = () => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             
-            // Show/hide main nav based on scroll direction
             if (currentScrollY > lastScrollY.current && currentScrollY > (headerRef.current?.clientHeight ?? 150)) {
-                setIsScrolledDown(true); // Scrolling Down
+                setIsScrolledDown(true); 
             } else {
-                setIsScrolledDown(false); // Scrolling Up
+                setIsScrolledDown(false);
             }
             lastScrollY.current = currentScrollY;
         };
 
         const setPadding = () => {
             if (headerRef.current) {
-                // Set padding based on the initial, full height of the header
                 const headerHeight = headerRef.current.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
             }
         };
 
-        // Set initial padding and add listeners
         setPadding();
         window.addEventListener('resize', setPadding);
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        // Clean up listeners
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', setPadding);
