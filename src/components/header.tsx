@@ -73,8 +73,11 @@ const MainNav = () => {
    
     return (
         <div className="border-b bg-background">
-            <div className="container relative flex h-16 items-center justify-center">
-                <nav className="hidden md:flex items-center gap-6">
+            <div className="container relative flex h-16 items-center">
+                 <div className="flex-1 flex justify-start">
+                    {/* Empty div for spacing */}
+                </div>
+                <nav className="flex-shrink-0 hidden md:flex items-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
                             key={link.href}
@@ -96,14 +99,14 @@ const MainNav = () => {
                     ))}
                 </nav>
 
-                <div className="absolute right-8 hidden md:flex items-center gap-2">
+                <div className="flex-1 hidden md:flex items-center justify-end gap-2">
                     <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
                         <Link href="/enquiry">Enquiry Form</Link>
                     </Button>
                     <EnquiryCartIcon />
                 </div>
 
-                <div className="absolute right-8 flex items-center md:hidden">
+                <div className="flex md:hidden items-center ml-auto">
                     <Sheet open={isOpen} onOpenChange={setIsOpen}>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon">
@@ -151,39 +154,32 @@ const MainNav = () => {
 };
 
 const Header = () => {
-    const [mainNavVisible, setMainNavVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
-        const controlNavbar = () => {
-            if (typeof window !== 'undefined') {
-                if (window.scrollY > lastScrollY && window.scrollY > 80) { // Height of TopBar approx 79px + buffer
-                    setMainNavVisible(false);
-                } else {
-                    setMainNavVisible(true);
-                }
-                setLastScrollY(window.scrollY);
-            }
+        const handleScroll = () => {
+            // Checks if user has scrolled more than a small threshold (e.g., 10px)
+            setIsScrolled(window.scrollY > 10);
         };
 
-        window.addEventListener('scroll', controlNavbar, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
-            window.removeEventListener('scroll', controlNavbar);
+            window.removeEventListener('scroll', handleScroll);
         };
-    }, [lastScrollY]);
+    }, []);
 
     return (
-        <div className='fixed top-0 left-0 right-0 z-50'>
+        <header className='fixed top-0 left-0 right-0 z-50'>
              <TopBar />
              <div
                 className={cn(
                     'w-full z-40 transition-transform duration-300',
-                    mainNavVisible ? 'transform-none' : '-translate-y-full'
+                    isScrolled ? '-translate-y-full' : 'transform-none'
                 )}
             >
                 <MainNav />
             </div>
-        </div>
+        </header>
     );
 };
 
