@@ -10,6 +10,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Product } from "@/lib/types";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { BrandLogos } from "@/components/brand-logos";
 
 const getImageUrl = (id: string) => {
   return PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -80,6 +81,8 @@ export default function Home() {
             </Carousel>
         </div>
       </section>
+      
+      <BrandLogos />
 
       <section id="services" className="w-full py-20 lg:py-28 bg-background">
         <div className="container mx-auto px-4">
