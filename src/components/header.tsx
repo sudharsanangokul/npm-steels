@@ -96,87 +96,85 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full">
-      <div className={cn(
-        "relative transition-transform duration-300",
-        isMounted && (headerVisible ? "transform-none" : "lg:-translate-y-[140px]")
-      )}>
-        <div className="bg-background/95 backdrop-blur-sm border-b">
-            <div className="container mx-auto flex items-center justify-between py-2">
-                <Link href="/" className="flex items-center">
-                    <Image src="/logo.jpg" alt="SRK International Logo" width={200} height={60} className="object-contain" />
-                </Link>
-                <div className="hidden lg:block">
-                  <TopBarInfo />
-                </div>
-                <div className="lg:hidden">
-                  <EnquiryCartIcon />
-                </div>
-            </div>
-        </div>
-      
-        <div className="border-b bg-background">
-          <div className="container flex h-16 items-center justify-between">
-            <nav className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-red-600"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="hidden md:flex items-center gap-2">
-                <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
-                    <Link href="/enquiry">Enquiry Form</Link>
-                </Button>
+      <div className="bg-background/95 backdrop-blur-sm border-b">
+          <div className="container mx-auto flex items-center justify-between py-2">
+              <Link href="/" className="flex items-center">
+                  <Image src="/logo.jpg" alt="SRK International Logo" width={200} height={60} className="object-contain" />
+              </Link>
+              <div className="hidden lg:block">
+                <TopBarInfo />
+              </div>
+              <div className="lg:hidden">
                 <EnquiryCartIcon />
-            </div>
+              </div>
+          </div>
+      </div>
+      
+      <div className={cn(
+        "border-b bg-background transition-transform duration-300",
+        isMounted && (headerVisible ? "transform-none" : "-translate-y-full")
+      )}>
+        <div className="container flex h-16 items-center justify-center">
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-red-600"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-            <div className="md:hidden flex items-center">
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6" />
-                    <span className="sr-only">Toggle Menu</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full max-w-xs bg-card">
-                  <div className="flex flex-col h-full">
-                    <div className="flex items-center justify-between border-b pb-4">
-                      <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                          <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
-                      </Link>
-                      <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                        <X className="h-6 w-6" />
-                        <span className="sr-only">Close Menu</span>
-                      </Button>
-                    </div>
-                    <nav className="mt-8 flex flex-col gap-6">
-                      {navLinks.map((link) => (
-                        <Link
-                          key={link.href}
-                          href={link.href}
-                          onClick={() => setIsOpen(false)}
-                          className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </nav>
-                    <div className="mt-auto border-t pt-6">
-                        <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white">
-                            <Link href="/enquiry" onClick={() => setIsOpen(false)}>
-                                Enquiry Form
-                            </Link>
-                        </Button>
-                    </div>
+          <div className="hidden md:flex items-center gap-2 absolute right-8">
+              <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-bold">
+                  <Link href="/enquiry">Enquiry Form</Link>
+              </Button>
+              <EnquiryCartIcon />
+          </div>
+
+          <div className="md:hidden flex items-center">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full max-w-xs bg-card">
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between border-b pb-4">
+                    <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                        <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
+                    </Link>
+                    <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                      <X className="h-6 w-6" />
+                      <span className="sr-only">Close Menu</span>
+                    </Button>
                   </div>
-                </SheetContent>
-              </Sheet>
-            </div>
+                  <nav className="mt-8 flex flex-col gap-6">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+                  <div className="mt-auto border-t pt-6">
+                      <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white">
+                          <Link href="/enquiry" onClick={() => setIsOpen(false)}>
+                              Enquiry Form
+                          </Link>
+                      </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
