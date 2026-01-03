@@ -15,10 +15,6 @@ export type Service = {
   icon: LucideIcon;
 };
 
-export interface EnquiryItem extends Product {
-  quantity: number;
-}
-
 export type MegaMenuProduct = {
   title: string;
   subCategories: string[];

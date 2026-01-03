@@ -6,7 +6,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Mail, Clock, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import EnquiryCartIcon from './enquiry-cart-icon';
 import { cn } from '@/lib/utils';
 import { ProductsMegaMenu } from './products-mega-menu';
 
@@ -60,21 +59,58 @@ const TopBar = () => (
                 </Button>
             </div>
             <div className="lg:hidden">
-                <EnquiryCartIcon />
+              <Sheet>
+                  <SheetTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                          <Menu className="h-6 w-6" />
+                          <span className="sr-only">Toggle Menu</span>
+                      </Button>
+                  </SheetTrigger>
+                  <SheetContent side="right" className="w-full max-w-xs bg-card">
+                    <MobileNav />
+                  </SheetContent>
+              </Sheet>
             </div>
         </div>
     </div>
 );
 
+const MobileNav = () => {
+    const [isOpen, setIsOpen] = useState(true); // Manages its own state within the sheet
+    return (
+        <div className="flex h-full flex-col">
+            <div className="flex items-center justify-between border-b pb-4">
+                <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                    <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
+                </Link>
+            </div>
+            <nav className="mt-8 flex flex-col gap-6">
+                 {[{ href: '/', label: 'Home' }, ...navLinks.slice(1)].map((link) => (
+                    <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                    >
+                        {link.label}
+                    </Link>
+                ))}
+                <Link href="/enquiry" onClick={() => setIsOpen(false)} className="text-lg font-medium text-foreground transition-colors hover:text-primary">
+                    Request a Quote
+                </Link>
+            </nav>
+        </div>
+    );
+};
+
+
 const MainNav = ({ isVisible }: { isVisible: boolean }) => {
-    const [isOpen, setIsOpen] = useState(false);
-   
     return (
         <div className={cn(
             "border-b bg-background transition-transform duration-300 ease-in-out relative z-10",
             isVisible ? 'translate-y-0' : '-translate-y-full'
         )}>
-            <div className="container relative flex h-16 items-center">
+            <div className="container relative flex h-16 items-center justify-center">
                 <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
                     {navLinks.slice(0, 1).map((link) => (
                         <Link
@@ -99,44 +135,9 @@ const MainNav = ({ isVisible }: { isVisible: boolean }) => {
 
                 <div className="absolute right-0 flex items-center">
                   <div className="hidden md:flex items-center gap-2">
-                      <EnquiryCartIcon />
-                  </div>
-
-                  <div className="flex md:hidden items-center ml-auto">
-                      <EnquiryCartIcon />
-                      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                          <SheetTrigger asChild>
-                              <Button variant="ghost" size="icon">
-                                  <Menu className="h-6 w-6" />
-                                  <span className="sr-only">Toggle Menu</span>
-                              </Button>
-                          </SheetTrigger>
-                          <SheetContent side="right" className="w-full max-w-xs bg-card">
-                              <div className="flex h-full flex-col">
-                                  <div className="flex items-center justify-between border-b pb-4">
-                                      <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                                          <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} />
-                                      </Link>
-                                      <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                                          <X className="h-6 w-6" />
-                                          <span className="sr-only">Close Menu</span>
-                                      </Button>
-                                  </div>
-                                  <nav className="mt-8 flex flex-col gap-6">
-                                      {[{ href: '/', label: 'Home' }, { href: '/products', label: 'Products' }, ...navLinks.slice(1)].map((link) => (
-                                          <Link
-                                              key={link.href}
-                                              href={link.href}
-                                              onClick={() => setIsOpen(false)}
-                                              className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                                          >
-                                              {link.label}
-                                          </Link>
-                                      ))}
-                                  </nav>
-                              </div>
-                          </SheetContent>
-                      </Sheet>
+                       <Button asChild className="bg-red-600 hover:bg-red-700 text-white font-bold">
+                            <Link href="/enquiry">Request a Quote</Link>
+                        </Button>
                   </div>
                 </div>
             </div>

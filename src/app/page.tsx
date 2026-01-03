@@ -3,11 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { services, products } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Product } from "@/lib/types";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { BrandLogos } from "@/components/brand-logos";
@@ -16,14 +13,7 @@ const getImageUrl = (id: string) => {
   return PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
 }
 
-const getProductImageUrl = (product: Product) => {
-  const placeholder = PlaceHolderImages.find(p => p.id === product.id);
-  return placeholder?.imageUrl || "https://picsum.photos/seed/default/600/400";
-};
-
-
 export default function Home() {
-  const featuredProducts = products.slice(0, 4);
   const carouselImages = [
     PlaceHolderImages.find(img => img.id === 'hr-steel-sheet'),
     PlaceHolderImages.find(img => img.id === 'gallery-5'),
@@ -38,10 +28,10 @@ export default function Home() {
       <section className="relative w-full flex items-center justify-center text-center bg-gray-200/50 dark:bg-gray-800/20 pt-16 pb-12 md:pt-24 md:pb-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
         <div className="relative z-10 p-4 animate-in fade-in slide-in-from-bottom-12 duration-700 container">
-          <h1 className="font-headline text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-red-600 uppercase">
+          <h1 className="font-headline text-xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-red-600 uppercase">
             India's Only Steel Wholesalers to Maintain Stocks of CR Sheets from 0.35mm & HR Plates from 1.6mm Above & HR Slabs Upto 600mm Thickness with UT & TC Pass
           </h1>
-          <p className="mt-6 max-w-4xl mx-auto text-lg md:text-xl text-foreground/80">
+          <p className="mt-6 max-w-4xl mx-auto text-base sm:text-lg md:text-xl text-foreground/80">
             Importers, Indenting Agents, Super Stockists & Wholesale Dealers of All Kinds of Iron & Steel Raw Materials
           </p>
         </div>
@@ -113,6 +103,9 @@ export default function Home() {
                   </div>
                 </li>
               </ul>
+               <Button asChild className="mt-8">
+                  <Link href="/contact">Learn More <ArrowRight className="ml-2" /></Link>
+              </Button>
             </div>
             <div className="relative h-80 rounded-lg overflow-hidden animate-in fade-in slide-in-from-right-12 duration-500">
                <Image

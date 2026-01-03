@@ -3,7 +3,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useEnquiry } from '@/context/enquiry-context';
 import { submitEnquiry } from '@/lib/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -13,19 +12,20 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   company: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().min(10, { message: "Please enter a valid phone number." }),
-  message: z.string().optional(),
+  message: z.string().min(10, { message: "Please describe your requirements."}),
 });
 
 export function EnquiryForm() {
-  const { enquiryItems, clearEnquiry } = useEnquiry();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,18 +39,9 @@ export function EnquiryForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (enquiryItems.length === 0) {
-        toast({
-            title: "Your cart is empty",
-            description: "Please add products to your enquiry before submitting.",
-            variant: "destructive",
-        });
-        return;
-    }
-
     setIsSubmitting(true);
     
-    const result = await submitEnquiry({ ...values, items: enquiryItems });
+    const result = await submitEnquiry(values);
 
     setIsSubmitting(false);
 
@@ -60,7 +51,7 @@ export function EnquiryForm() {
         description: result.message,
       });
       form.reset();
-      clearEnquiry();
+      router.push('/');
     } else {
       toast({
         title: "Submission Failed",
@@ -137,10 +128,10 @@ export function EnquiryForm() {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Additional Notes or Questions</FormLabel>
+                  <FormLabel>Project Requirements</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="e.g., specific cutting dimensions, delivery requirements, etc."
+                      placeholder="e.g., specific products, dimensions, delivery requirements, etc."
                       className="min-h-[120px]"
                       {...field}
                     />

@@ -1,15 +1,13 @@
 'use server';
 
 import { z } from 'zod';
-import type { EnquiryItem } from './types';
 
 const enquirySchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   company: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().min(10, { message: "Please enter a valid phone number." }),
-  message: z.string().optional(),
-  items: z.array(z.any()),
+  message: z.string().min(10, { message: "Please describe your requirements."}),
 });
 
 
@@ -19,16 +17,11 @@ export async function submitEnquiry(payload: {
     email: string;
     phone: string;
     message?: string;
-    items: EnquiryItem[];
 }) {
     const parsedPayload = enquirySchema.safeParse(payload);
 
     if (!parsedPayload.success) {
         return { success: false, message: "Invalid form data.", errors: parsedPayload.error.flatten().fieldErrors };
-    }
-    
-    if (parsedPayload.data.items.length === 0) {
-        return { success: false, message: "Your enquiry cart is empty." };
     }
 
     console.log('New Enquiry Submitted:', parsedPayload.data);

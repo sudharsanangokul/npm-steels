@@ -29,7 +29,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             />
         )}
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 text-center animate-in fade-in slide-in-from-bottom-12 duration-500">
+        <div className="relative z-10 text-center p-4 animate-in fade-in slide-in-from-bottom-12 duration-500">
           <h1 className="font-headline text-4xl md:text-6xl font-bold">{product.name}</h1>
         </div>
       </section>
@@ -48,16 +48,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                            Specifications
                         </h3>
                         <div className="mt-4 border rounded-lg overflow-hidden">
-                            <table className="w-full">
-                                <tbody>
+                            <div className="w-full">
                                 {Object.entries(product.specs).map(([key, value], index) => (
-                                    <tr key={key} className={index % 2 === 0 ? 'bg-muted/50' : 'bg-background'}>
-                                        <td className="p-4 font-semibold w-1/3">{key}</td>
-                                        <td className="p-4">{value}</td>
-                                    </tr>
+                                    <div key={key} className={cn("flex flex-col sm:flex-row", index % 2 === 0 ? 'bg-muted/50' : 'bg-background')}>
+                                        <div className="p-4 font-semibold sm:w-1/3">{key}</div>
+                                        <div className="p-4 pt-0 sm:pt-4">{value}</div>
+                                    </div>
                                 ))}
-                                </tbody>
-                            </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,9 +65,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                             <CardTitle className="font-headline text-2xl">Need a Quote?</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-muted-foreground mb-6">Add this product to your enquiry list or contact us directly for more information.</p>
+                            <p className="text-muted-foreground mb-6">Contact us directly for pricing and more information about this product.</p>
                              <Button asChild size="lg" className="w-full font-semibold">
-                                <Link href="/enquiry">Go to Enquiry <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                                <Link href="/enquiry">Request a Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
                             </Button>
                         </CardContent>
                     </Card>
