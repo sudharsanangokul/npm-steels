@@ -74,16 +74,20 @@ const MainNav = () => {
 
     useEffect(() => {
         const controlNavbar = () => {
-            if (window.scrollY > lastScrollY && window.scrollY > 200) {
-                setHeaderVisible(false);
-            } else {
-                setHeaderVisible(true);
+            if (typeof window !== 'undefined') {
+                if (window.scrollY > lastScrollY && window.scrollY > 200) {
+                    setHeaderVisible(false);
+                } else {
+                    setHeaderVisible(true);
+                }
+                setLastScrollY(window.scrollY);
             }
-            setLastScrollY(window.scrollY);
         };
 
-        window.addEventListener('scroll', controlNavbar, { passive: true });
-        return () => window.removeEventListener('scroll', controlNavbar);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', controlNavbar, { passive: true });
+            return () => window.removeEventListener('scroll', controlNavbar);
+        }
     }, [lastScrollY]);
 
 
