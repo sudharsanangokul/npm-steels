@@ -63,14 +63,14 @@ const TopBarInfo = () => (
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [navVisible, setNavVisible] = useState(true);
 
   const controlNavbar = () => {
     if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY && window.scrollY > 80) { // if scroll down hide the navbar
+      if (window.scrollY > lastScrollY && window.scrollY > 80) {
         setNavVisible(false);
-      } else { // if scroll up show the navbar
+      } else {
         setNavVisible(true);
       }
       setLastScrollY(window.scrollY);
@@ -80,16 +80,14 @@ const Header = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', controlNavbar);
-
       return () => {
         window.removeEventListener('scroll', controlNavbar);
       };
     }
   }, [lastScrollY]);
 
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background">
       <div className="hidden lg:block border-b">
          <div className="container mx-auto flex items-center justify-between py-2">
             <Link href="/" className="flex items-center">
@@ -100,7 +98,7 @@ const Header = () => {
       </div>
 
       <div className={cn(
-        "border-b transition-transform duration-300",
+        "border-b transition-transform duration-300 bg-background",
         navVisible ? "translate-y-0" : "-translate-y-full"
       )}>
         <div className="container flex h-16 items-center justify-between">
