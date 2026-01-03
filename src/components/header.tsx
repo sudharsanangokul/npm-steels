@@ -68,7 +68,7 @@ const Header = () => {
 
   const controlNavbar = () => {
     if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY && window.scrollY > 150) { // Start hiding after scrolling 150px
+      if (window.scrollY > lastScrollY && window.scrollY > 150) { 
         setNavVisible(false);
       } else {
         setNavVisible(true);
@@ -88,7 +88,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-background/95 backdrop-blur-sm">
-      <div className="hidden lg:block border-b">
+       <div className="hidden lg:block border-b">
          <div className="container mx-auto flex items-center justify-between py-2">
             <Link href="/" className="flex items-center">
                 <Image src="/logo.jpg" alt="SRK International Logo" width={200} height={60} className="object-contain" />
@@ -96,15 +96,17 @@ const Header = () => {
             <TopBarInfo />
         </div>
       </div>
-
+      
       <div className={cn(
-        "border-b transition-all duration-300 bg-background",
-        navVisible ? "transform-none" : "-translate-y-full absolute w-full"
+        "border-b transition-transform duration-300 bg-background",
+        navVisible ? "transform-none" : "lg:-translate-y-full"
       )}>
         <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 lg:hidden">
-            <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
-          </Link>
+          <div className="lg:hidden">
+              <Link href="/" className="flex items-center gap-2">
+                  <Image src="/logo.jpg" alt="SRK International Logo" width={150} height={45} className="object-contain" />
+              </Link>
+          </div>
 
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
