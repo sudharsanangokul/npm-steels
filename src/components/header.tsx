@@ -75,7 +75,8 @@ const MainNav = () => {
     useEffect(() => {
         const controlNavbar = () => {
             if (typeof window !== 'undefined') {
-                if (window.scrollY > lastScrollY && window.scrollY > 200) {
+                // If scrolling down and past the top bar, hide the header
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
                     setHeaderVisible(false);
                 } else {
                     setHeaderVisible(true);
@@ -93,8 +94,8 @@ const MainNav = () => {
 
     return (
         <div className={cn(
-            "border-b bg-background transition-transform duration-300 sticky top-0",
-            headerVisible ? "transform-none" : "-translate-y-full"
+            "border-b bg-background transition-transform duration-300 sticky top-[92px]",
+            headerVisible ? "transform-none" : "-translate-y-[200px]"
         )}>
             <div className="container flex h-16 items-center justify-center relative">
                 <nav className="hidden md:flex items-center gap-6">
