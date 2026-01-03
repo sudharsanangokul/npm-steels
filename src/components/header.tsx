@@ -66,11 +66,14 @@ const TopBar = () => (
     </div>
 );
 
-const MainNav = () => {
+const MainNav = ({ isVisible }: { isVisible: boolean }) => {
     const [isOpen, setIsOpen] = useState(false);
    
     return (
-        <div className="border-b bg-background">
+        <div className={cn(
+            "border-b bg-background transition-transform duration-300 ease-in-out",
+            isVisible ? 'translate-y-0' : '-translate-y-full'
+        )}>
             <div className="container relative flex h-16 items-center">
                 <div className="flex-1" />
                 <nav className="hidden md:flex flex-none items-center gap-6">
@@ -153,14 +156,22 @@ const MainNav = () => {
 };
 
 const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrolledDown, setIsScrolledDown] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
-    const mainNavRef = useRef<HTMLDivElement>(null);
-    const [mainNavHeight, setMainNavHeight] = useState(0);
+    const lastScrollY = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
+            const currentScrollY = window.scrollY;
+            if (headerRef.current) {
+                // Determine scroll direction
+                if (currentScrollY > lastScrollY.current && currentScrollY > headerRef.current.clientHeight) {
+                    setIsScrolledDown(true); // Scrolling Down
+                } else {
+                    setIsScrolledDown(false); // Scrolling Up
+                }
+            }
+            lastScrollY.current = currentScrollY;
         };
 
         const setPadding = () => {
@@ -168,15 +179,14 @@ const Header = () => {
                 const headerHeight = headerRef.current.offsetHeight;
                 document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
             }
-            if (mainNavRef.current) {
-                setMainNavHeight(mainNavRef.current.offsetHeight);
-            }
         };
-
+        
+        // Call setPadding on mount and on resize
         setPadding();
-        window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener('resize', setPadding);
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
+        // Clean up listeners
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', setPadding);
@@ -186,13 +196,10 @@ const Header = () => {
     return (
         <header 
             ref={headerRef} 
-            className='fixed top-0 left-0 right-0 z-50 bg-background transition-transform duration-300 ease-in-out'
-            style={{ transform: isScrolled ? `translateY(-${mainNavHeight}px)` : 'translateY(0)' }}
+            className='fixed top-0 left-0 right-0 z-50 bg-background'
         >
              <TopBar />
-             <div ref={mainNavRef}>
-                <MainNav />
-             </div>
+             <MainNav isVisible={!isScrolledDown} />
         </header>
     );
 };
